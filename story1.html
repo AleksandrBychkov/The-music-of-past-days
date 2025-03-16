@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif; 
             text-align: center; 
             margin: 50px; 
-            background-image: url('https://i.pinimg.com/originals/09/2b/bb/092bbbb526efc02e25980cc2375aac9e.jpg'); /* Обои на фоне всей страницы */
+            background-image: url('https://i.pinimg.com/originals/09/2b/bb/092bbbb526efc02e25980cc2375aac9e.jpg');
             background-size: cover;
             background-position: center;
             color: #333;
@@ -20,21 +20,41 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: rgba(255, 223, 150, 0.7); /* Светло-желтый фон за текстом */
+            background-color: rgba(255, 223, 150, 0.7);
         }
         h1 { color: #333; }
         p { text-align: justify; line-height: 1.6; }
-        .music-container {
-            margin: 20px 0;
+        .music-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            font-size: 18px;
+            background: linear-gradient(145deg, #ffcc00, #ff9900);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+        }
+        .music-button:active {
+            transform: scale(0.9);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
 
+    <button class="music-button" id="musicToggle">Включить минус</button>
+    <audio id="backgroundMusic" loop>
+        <source src="Игорь Скляр - Комарово (DVRST Remix) (Minus) [Phonk].mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
     <div class="container">
         <h1>Желтая кассета. И. Скляр "Комарово"</h1>
 
-        <!-- Встроенный плеер Яндекс Музыки -->
         <div class="music-container">
             <iframe frameborder="0" allow="clipboard-write" 
                 style="border:none;width:100%;height:210px;" 
@@ -108,5 +128,18 @@
         </p>
     </div>
 
+    <script>
+        document.getElementById('musicToggle').addEventListener('click', function() {
+            let audio = document.getElementById('backgroundMusic');
+            if (audio.paused) {
+                audio.play();
+                this.textContent = "Выключить минус";
+            } else {
+                audio.pause();
+                this.textContent = "Включить минус";
+            }
+        });
+    </script>
 </body>
 </html>
+
